@@ -4,10 +4,8 @@ import hashlib
 
 #Creating the Signal with two frequencies
 dt = 0.001
-t = np.arange(0, 15000, dt)
-f = signal.sawtooth(2*np.pi*100*t) + np.sin(2*np.pi*150*t)
-f_clean = f 
-f = f + 2.5*np.random.randn(len(t))  # Adding noise
+t = np.arange(0, 15000, dt) 
+f = 2.5*np.random.randn(len(t))  # Adding noise
 
 n = len(t)
 fhat = np.fft.fft(f, n)  
@@ -19,9 +17,9 @@ L = np.arange(1, np.floor(n/2), dtype='int')  # Only positive frequencies
 fig,axs = plt.subplots(2, 1, figsize=(15, 11))
 plt.sca(axs[0])
 plt.plot(t,f, color = "red", linewidth = 1.5, label='Noisy Signal')
-plt.plot(t, f_clean, color = "Black", linewidth = 2, label='Clean Signal')
+plt.title("Noisy Signal in Time-Domain") 
 plt.xlim(t[0], t[-1])
-plt.legend()
+
 
 plt.sca(axs[1])
 plt.plot(freq[L], PSD[L], color = "blue", linewidth = 1.5, label = "Noisy Signal")
@@ -29,7 +27,6 @@ plt.title ("Power Spectral Density (PSD) as function of Frequency")
 plt.ylabel("Power/Frequency (dB/Hz)")
 plt.xlabel("Frequency (Hz)")
 plt.xlim(freq[L[0]], freq[L[-1]])
-plt.legend()
 
 plt.show()
 
