@@ -2,10 +2,10 @@ import numpy as np, matplotlib.pyplot as plt
 from scipy import signal
 import hashlib
 
-#Creating the Signal with two frequencies
+#Creating the Noise Signal
 dt = 0.001
 t = np.arange(0, 15000, dt) 
-f = 2.5*np.random.randn(len(t))  # Adding noise
+f = 2.5*np.random.randn(len(t)) 
 
 n = len(t)
 fhat = np.fft.fft(f, n)  
